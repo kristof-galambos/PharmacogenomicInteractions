@@ -1,4 +1,3 @@
-
 def split_data(X, y):
     shuffled_idx = X.sample(frac=1, random_state=42).index
 
