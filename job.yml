@@ -1,0 +1,27 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+code: .
+command: >-
+  python src/train.py
+  --mutation-csv ${{inputs.mutation_csv}}
+  --expression-csv ${{inputs.expression_csv}}
+  --ic50-csv ${{inputs.ic50_csv}}
+  --drug-name ${{inputs.drug_name}}
+  --output-dir ${{outputs.output_dir}}
+environment:
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
+  conda_file: environment/conda.yml
+compute: azureml:pharma-cpu-cluster
+inputs:
+  mutation_csv:
+    type: uri_file
+    path: ./data/mutations_summary_20260316.csv
+  expression_csv:
+    type: uri_file
+    path: ./data/rnaseq_merged_rsem_tpm_20260323.csv
+  ic50_csv:
+    type: uri_file
+    path: ./data/GDSC2_fitted_dose_response_27Oct23.xlsx
+  drug_name: "Camptothecin"
+outputs:
+  output_dir:
+    type: uri_folder
