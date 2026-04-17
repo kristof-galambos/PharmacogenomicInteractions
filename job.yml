@@ -6,6 +6,9 @@ command: >-
   --expression-csv ${{inputs.expression_csv}}
   --ic50-csv ${{inputs.ic50_csv}}
   --drug-name ${{inputs.drug_name}}
+  --cancer-type ${{inputs.cancer_type}}
+  --feature-config ${{inputs.feature_config}}
+  --n-bootstraps ${{inputs.n_bootstraps}}
   --output-dir ${{outputs.output_dir}}
 environment:
   image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
@@ -22,6 +25,9 @@ inputs:
     type: uri_file
     path: ./data/GDSC2_fitted_dose_response_27Oct23.xlsx
   drug_name: "Camptothecin"
+  cancer_type: "pan-cancer"
+  feature_config: "both"
+  n_bootstraps: 10
 outputs:
   output_dir:
     type: uri_folder

@@ -8,16 +8,35 @@ from model import fit_en, predict_en
 from utils import get_mutation_columns, pearson_correlation, get_gene_expression_columns
 
 
-def run_modelling(data):
+def select_feature_columns(data, feature_config):
+    mutation_columns = get_mutation_columns(data.columns)
+    gene_expression_columns = get_gene_expression_columns(data.columns)
+
+    if feature_config == "mutations":
+        return mutation_columns
+    if feature_config == "expression":
+        return gene_expression_columns
+    if feature_config == "both":
+        return mutation_columns + gene_expression_columns
+
+    raise ValueError(
+        f"Unknown feature_config={feature_config!r}. "
+        "Expected one of: mutations, expression, both."
+    )
+
+
+def run_modelling(data, feature_config="both", random_state=42):
     print('hi')
     print(data.shape)
     y = data['LN_IC50']
-    mutation_columns = get_mutation_columns(data.columns)
-    gene_expression_columns = get_gene_expression_columns(data.columns)
-    X = data[mutation_columns + gene_expression_columns]
+    feature_columns = select_feature_columns(data, feature_config)
+    if not feature_columns:
+        raise ValueError(f"No columns available for feature_config={feature_config!r}.")
+
+    X = data[feature_columns]
     print(X.shape)
     print(y.shape)
-    X_train, X_val, X_test, y_train, y_val, y_test = split_data(X, y)
+    X_train, X_val, X_test, y_train, y_val, y_test = split_data(X, y, random_state=random_state)
     print(X_train.shape, X_val.shape, X_test.shape)
     print(y_train.shape)
     scaler = StandardScaler()
@@ -55,9 +74,16 @@ def run_modelling(data):
     y_test_pred = predict_en(final_model, X_test_scaled)
     test_r = pearson_correlation(y_test, y_test_pred)
     print('test_pearson =', test_r)
-    return y_test, y_test_pred, test_r, final_model
+    model_info = {
+        "n_features": len(feature_columns),
+        "best_alpha": best_alpha,
+        "best_l1_ratio": best_l1_ratio,
+        "validation_pearson_r": best_val_r,
+        "validation_r2": r2,
+    }
+    return y_test, y_test_pred, test_r, final_model, model_info
 
 
 if __name__ == '__main__':
     data = read_data(drug_name='Camptothecin')
-    y_test, y_test_pred, test_r, final_model = run_modelling(data)
+    y_test, y_test_pred, test_r, final_model, model_info = run_modelling(data)
