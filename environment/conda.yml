@@ -8,3 +8,6 @@ dependencies:
   - openpyxl
   - numpy
   - pip
+  - pip:
+      - mlflow<=2.16.2
+      - azureml-mlflow

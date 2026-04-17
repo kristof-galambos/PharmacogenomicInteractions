@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.metrics import r2_score
+from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 from data_reader import read_data
@@ -74,6 +75,10 @@ def run_modelling(data, feature_config="both", random_state=42):
     y_test_pred = predict_en(final_model, X_test_scaled)
     test_r = pearson_correlation(y_test, y_test_pred)
     print('test_pearson =', test_r)
+    final_pipeline = Pipeline([
+        ("scaler", final_scaler),
+        ("elastic_net", final_model),
+    ])
     model_info = {
         "n_features": len(feature_columns),
         "best_alpha": best_alpha,
@@ -81,7 +86,7 @@ def run_modelling(data, feature_config="both", random_state=42):
         "validation_pearson_r": best_val_r,
         "validation_r2": r2,
     }
-    return y_test, y_test_pred, test_r, final_model, model_info
+    return y_test, y_test_pred, test_r, final_pipeline, model_info
 
 
 if __name__ == '__main__':

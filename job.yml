@@ -9,10 +9,12 @@ command: >-
   --cancer-type ${{inputs.cancer_type}}
   --feature-config ${{inputs.feature_config}}
   --n-bootstraps ${{inputs.n_bootstraps}}
+  --register-models
   --output-dir ${{outputs.output_dir}}
 environment:
   image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
   conda_file: environment/conda.yml
+experiment_name: pharmacogenomics-reproduction
 compute: azureml:pharma-cpu-cluster
 inputs:
   mutation_csv:
