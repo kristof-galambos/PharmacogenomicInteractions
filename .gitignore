@@ -2,3 +2,6 @@ bin/
 lib/
 pyvenv.cfg
 .idea/
+greenlet.h
+ttx.1
+local_outputs/
