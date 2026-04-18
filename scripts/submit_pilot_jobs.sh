@@ -7,7 +7,6 @@ JOB_FILE="${JOB_FILE:-job.yml}"
 jobs=(
   "Camptothecin|Breast Carcinoma|both"
   "Camptothecin|Non-Small Cell Lung Carcinoma|both"
-  "Camptothecin|Glioblastoma|both"
   "Cisplatin|Breast Carcinoma|mutations"
   "Paclitaxel|Non-Small Cell Lung Carcinoma|expression"
 )
@@ -19,8 +18,8 @@ for job_spec in "${jobs[@]}"; do
   az ml job create \
     -f "$JOB_FILE" \
     --set \
-      inputs.drug_name="$drug_name" \
-      inputs.cancer_type="$cancer_type" \
-      inputs.feature_config="$feature_config" \
-      inputs.n_bootstraps="$BOOTSTRAPS"
+      "inputs.drug_name=${drug_name}" \
+      "inputs.cancer_type=${cancer_type}" \
+      "inputs.feature_config=${feature_config}" \
+      "inputs.n_bootstraps=${BOOTSTRAPS}"
 done

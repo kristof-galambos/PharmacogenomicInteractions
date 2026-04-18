@@ -1,13 +1,13 @@
-az ml job create -f job.yml --set inputs.drug_name="Camptothecin" inputs.cancer_type="pan-cancer" inputs.feature_config="both" inputs.n_bootstraps=10
-az ml job create -f job.yml --set inputs.drug_name="Camptothecin" inputs.cancer_type="pan-cancer" inputs.feature_config="mutations" inputs.n_bootstraps=10
-az ml job create -f job.yml --set inputs.drug_name="Camptothecin" inputs.cancer_type="pan-cancer" inputs.feature_config="expression" inputs.n_bootstraps=10
+az ml job create -f job.yml --set "inputs.drug_name=Camptothecin" "inputs.cancer_type=pan-cancer" "inputs.feature_config=both" "inputs.n_bootstraps=10"
+az ml job create -f job.yml --set "inputs.drug_name=Camptothecin" "inputs.cancer_type=pan-cancer" "inputs.feature_config=mutations" "inputs.n_bootstraps=10"
+az ml job create -f job.yml --set "inputs.drug_name=Camptothecin" "inputs.cancer_type=pan-cancer" "inputs.feature_config=expression" "inputs.n_bootstraps=10"
 
-az ml job create -f job.yml --set inputs.drug_name="Camptothecin" inputs.cancer_type="breast" inputs.feature_config="both" inputs.n_bootstraps=10
-az ml job create -f job.yml --set inputs.drug_name="Camptothecin" inputs.cancer_type="lung_NSCLC" inputs.feature_config="both" inputs.n_bootstraps=10
-az ml job create -f job.yml --set inputs.drug_name="Camptothecin" inputs.cancer_type="large_intestine" inputs.feature_config="both" inputs.n_bootstraps=10
+az ml job create -f job.yml --set "inputs.drug_name=Camptothecin" "inputs.cancer_type=Breast Carcinoma" "inputs.feature_config=both" "inputs.n_bootstraps=10"
+az ml job create -f job.yml --set "inputs.drug_name=Camptothecin" "inputs.cancer_type=Non-Small Cell Lung Carcinoma" "inputs.feature_config=both" "inputs.n_bootstraps=10"
+az ml job create -f job.yml --set "inputs.drug_name=Camptothecin" "inputs.cancer_type=Glioblastoma" "inputs.feature_config=both" "inputs.n_bootstraps=10"
 
-az ml job create -f job.yml --set inputs.drug_name="Cisplatin" inputs.cancer_type="pan-cancer" inputs.feature_config="both" inputs.n_bootstraps=10
-az ml job create -f job.yml --set inputs.drug_name="Cisplatin" inputs.cancer_type="breast" inputs.feature_config="mutations" inputs.n_bootstraps=10
+az ml job create -f job.yml --set "inputs.drug_name=Cisplatin" "inputs.cancer_type=pan-cancer" "inputs.feature_config=both" "inputs.n_bootstraps=10"
+az ml job create -f job.yml --set "inputs.drug_name=Cisplatin" "inputs.cancer_type=Breast Carcinoma" "inputs.feature_config=mutations" "inputs.n_bootstraps=10"
 
-az ml job create -f job.yml --set inputs.drug_name="Paclitaxel" inputs.cancer_type="pan-cancer" inputs.feature_config="both" inputs.n_bootstraps=10
-az ml job create -f job.yml --set inputs.drug_name="Paclitaxel" inputs.cancer_type="lung_NSCLC" inputs.feature_config="expression" inputs.n_bootstraps=10
+az ml job create -f job.yml --set "inputs.drug_name=Paclitaxel" "inputs.cancer_type=pan-cancer" "inputs.feature_config=both" "inputs.n_bootstraps=10"
+az ml job create -f job.yml --set "inputs.drug_name=Paclitaxel" "inputs.cancer_type=Non-Small Cell Lung Carcinoma" "inputs.feature_config=expression" "inputs.n_bootstraps=10"

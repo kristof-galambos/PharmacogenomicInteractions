@@ -2,15 +2,15 @@ $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 code: .
 command: >-
   python src/train.py
-  --mutation-csv ${{inputs.mutation_csv}}
-  --expression-csv ${{inputs.expression_csv}}
-  --ic50-csv ${{inputs.ic50_csv}}
-  --drug-name ${{inputs.drug_name}}
-  --cancer-type ${{inputs.cancer_type}}
-  --feature-config ${{inputs.feature_config}}
+  --mutation-csv "${{inputs.mutation_csv}}"
+  --expression-csv "${{inputs.expression_csv}}"
+  --ic50-csv "${{inputs.ic50_csv}}"
+  --drug-name "${{inputs.drug_name}}"
+  --cancer-type "${{inputs.cancer_type}}"
+  --feature-config "${{inputs.feature_config}}"
   --n-bootstraps ${{inputs.n_bootstraps}}
   --register-models
-  --output-dir ${{outputs.output_dir}}
+  --output-dir "${{outputs.output_dir}}"
 environment:
   image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
   conda_file: environment/conda.yml
