@@ -8,13 +8,13 @@ jobs=(
   "Camptothecin|pan-cancer|both"
   "Camptothecin|pan-cancer|mutations"
   "Camptothecin|pan-cancer|expression"
-  "Camptothecin|breast|both"
-  "Camptothecin|lung_NSCLC|both"
-  "Camptothecin|large_intestine|both"
+  "Camptothecin|Breast Carcinoma|both"
+  "Camptothecin|Non-Small Cell Lung Carcinoma|both"
+  "Camptothecin|Glioblastoma|both"
   "Cisplatin|pan-cancer|both"
-  "Cisplatin|breast|mutations"
+  "Cisplatin|Breast Carcinoma|mutations"
   "Paclitaxel|pan-cancer|both"
-  "Paclitaxel|lung_NSCLC|expression"
+  "Paclitaxel|Non-Small Cell Lung Carcinoma|expression"
 )
 
 for job_spec in "${jobs[@]}"; do
