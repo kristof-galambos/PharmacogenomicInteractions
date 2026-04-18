@@ -6,3 +6,6 @@ if __name__ == '__main__':
     print('reading done')
 
     print(gdsc_data['CANCER_TYPE'].unique())
+    cancer_type_counts = gdsc_data.groupby('CANCER_TYPE').size() \
+        .reset_index(name="count").sort_values("count", ascending=False)
+    print(cancer_type_counts)
