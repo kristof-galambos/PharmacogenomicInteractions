@@ -5,15 +5,10 @@ BOOTSTRAPS="${BOOTSTRAPS:-10}"
 JOB_FILE="${JOB_FILE:-job.yml}"
 
 jobs=(
-  "Camptothecin|pan-cancer|both"
-  "Camptothecin|pan-cancer|mutations"
-  "Camptothecin|pan-cancer|expression"
   "Camptothecin|Breast Carcinoma|both"
   "Camptothecin|Non-Small Cell Lung Carcinoma|both"
   "Camptothecin|Glioblastoma|both"
-  "Cisplatin|pan-cancer|both"
   "Cisplatin|Breast Carcinoma|mutations"
-  "Paclitaxel|pan-cancer|both"
   "Paclitaxel|Non-Small Cell Lung Carcinoma|expression"
 )
 
