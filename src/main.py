@@ -3,10 +3,10 @@ from sklearn.metrics import r2_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-from data_reader import read_data
-from data_split import split_data
-from model import fit_en, predict_en
-from utils import get_mutation_columns, pearson_correlation, get_gene_expression_columns
+from src.data_reader import read_data
+from src.data_split import split_data
+from src.model import fit_en, predict_en
+from src.utils import get_mutation_columns, pearson_correlation, get_gene_expression_columns
 
 
 def select_feature_columns(data, feature_config):

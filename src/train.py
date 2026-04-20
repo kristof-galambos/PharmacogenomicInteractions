@@ -7,8 +7,8 @@ import mlflow.sklearn
 import pandas as pd
 from joblib import dump
 
-from data_reader import read_data
-from main import run_modelling
+from src.data_reader import read_data
+from src.main import run_modelling
 
 
 def parse_args():

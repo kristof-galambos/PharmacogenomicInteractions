@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import sys
 
-from utils import get_gene_expression_columns
+from src.utils import get_gene_expression_columns
 
 
 def read_data(gdsc_path='/Users/kristof/Downloads/GDSC2_fitted_dose_response_27Oct23.xlsx',
@@ -207,8 +207,70 @@ def prepare_expression(df):
     return expression_matrix
 
 
-def reduce_expression_features(df):
-    top_variance_top_n = 500
+def prepare_copy_number(df):
+    cnv = df.copy()
+
+    if cnv.shape[1] < 2 or cnv.shape[0] < 4:
+        raise ValueError("Copy number dataframe does not match an expected format.")
+
+    gene_col = cnv.columns[0]
+    sample_cols = list(cnv.columns[1:])
+
+    row_labels = cnv[gene_col].astype(str).str.strip()
+    row_labels_lower = row_labels.str.lower()
+
+    model_id_rows = row_labels_lower == "model_id"
+    if not model_id_rows.any():
+        raise ValueError("Copy number dataframe is missing the model_id metadata row.")
+
+    model_ids = (
+        cnv.loc[model_id_rows, sample_cols]
+        .iloc[0]
+        .astype(str)
+        .str.strip()
+    )
+    valid_model_ids = model_ids.notna() & (model_ids != "") & (model_ids.str.lower() != "nan")
+    if not valid_model_ids.any():
+        raise ValueError("Copy number dataframe does not contain any usable model IDs.")
+
+    metadata_rows = {"model_id", "source", "symbol"}
+    gene_rows = ~row_labels_lower.isin(metadata_rows)
+    gene_symbols = row_labels[gene_rows]
+    valid_gene_symbols = (
+        gene_symbols.notna()
+        & (gene_symbols != "")
+        & (gene_symbols.str.lower() != "nan")
+    )
+    if not valid_gene_symbols.any():
+        raise ValueError("Copy number dataframe does not contain any usable gene symbols.")
+
+    cnv_gene_rows = cnv.loc[gene_rows, sample_cols].loc[valid_gene_symbols].copy()
+    gene_symbols = gene_symbols.loc[valid_gene_symbols].astype(str)
+
+    cnv_numeric = cnv_gene_rows.apply(pd.to_numeric, errors="coerce")
+    cnv_numeric.index = gene_symbols
+
+    # Some source files contain duplicate gene symbols and repeated model IDs
+    # from multiple sources. Average them to keep one feature per gene and one
+    # row per cell line.
+    copy_number_by_gene = cnv_numeric.groupby(level=0).mean()
+    copy_number_by_gene = copy_number_by_gene.loc[:, valid_model_ids.to_numpy()]
+    copy_number_by_gene.columns = model_ids.loc[valid_model_ids].to_numpy()
+
+    copy_number_matrix = copy_number_by_gene.transpose().groupby(level=0).mean()
+    copy_number_matrix = copy_number_matrix.fillna(2.0)
+    copy_number_matrix.index.name = "model_id"
+
+    copy_number_matrix.columns = [f"CNV_{gene}" for gene in copy_number_matrix.columns]
+    copy_number_matrix = copy_number_matrix.reset_index()
+
+    print(copy_number_matrix.shape)
+    print(copy_number_matrix.head())
+
+    return copy_number_matrix
+
+
+def reduce_expression_features(df, top_variance_top_n=500):
     gene_cols = get_gene_expression_columns(df)
     if gene_cols:
         top_variance_gene_cols = select_top_variance_columns(
