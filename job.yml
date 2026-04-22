@@ -32,7 +32,7 @@ inputs:
     path: ./data/GDSC2_fitted_dose_response_27Oct23.xlsx
   drug_name: "Camptothecin"
   cancer_type: "pan-cancer"
-  feature_config: "both"
+  feature_config: "mutation_expression"
   n_bootstraps: 10
 outputs:
   output_dir:

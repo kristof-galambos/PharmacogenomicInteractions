@@ -100,13 +100,14 @@ if __name__ == '__main__':
     mut = get_prepared_mutations_data(mutations_path='/Users/kristof/Downloads/mutations_summary_20260316.csv')
     write_parquet_data(mut, '../data/mutations.parquet')
 
-    TOP_N = 500
+    EXPRESSION_TOP_N = 500
     expr = get_prepared_expression_data(expression_path='/Users/kristof/Downloads/rnaseq_merged_rsem_tpm_20260323.csv',
-                                        top_n=TOP_N)
-    write_parquet_data(expr, f'../data/gene_expressions_{TOP_N}.parquet')
+                                        top_n=EXPRESSION_TOP_N)
+    write_parquet_data(expr, f'../data/gene_expressions_{EXPRESSION_TOP_N}.parquet')
 
+    CNV_TOP_N = 500
     cnv = get_prepared_cnv_data(
         cnv_path='/Users/kristof/Downloads/WES_pureCN_CNV_genes_total_copy_number_20250207.csv',
-        top_n=TOP_N,
+        top_n=CNV_TOP_N,
     )
-    write_parquet_data(cnv, f'../data/copy_number_variations_{TOP_N}.parquet')
+    write_parquet_data(cnv, f'../data/copy_number_variations_{CNV_TOP_N}.parquet')

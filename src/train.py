@@ -30,12 +30,12 @@ def parse_args():
             "mutations",
             "expression",
             "copy_number",
-            "both",
+            "mutation_expression",
             "mutations_copy_number",
             "expression_copy_number",
             "all",
         ],
-        default="both",
+        default="mutation_expression",
     )
     parser.add_argument("--n-bootstraps", type=int, default=1)
     parser.add_argument("--random-seed", type=int, default=42)

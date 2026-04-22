@@ -25,7 +25,7 @@ def select_feature_columns(data, feature_config):
         return gene_expression_columns
     if feature_config == "copy_number":
         return copy_number_columns
-    if feature_config == "both":
+    if feature_config == "mutation_expression":
         return mutation_columns + gene_expression_columns
     if feature_config == "mutations_copy_number":
         return mutation_columns + copy_number_columns
@@ -36,12 +36,12 @@ def select_feature_columns(data, feature_config):
 
     raise ValueError(
         f"Unknown feature_config={feature_config!r}. "
-        "Expected one of: mutations, expression, copy_number, both, "
+        "Expected one of: mutations, expression, copy_number, mutation_expression, "
         "mutations_copy_number, expression_copy_number, all."
     )
 
 
-def run_modelling(data, feature_config="both", random_state=42):
+def run_modelling(data, feature_config="mutation_expression", random_state=42):
     print('hi')
     print(data.shape)
     y = data['LN_IC50']

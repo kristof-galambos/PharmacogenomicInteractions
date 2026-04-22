@@ -18,17 +18,17 @@ from data_reader import read_data
 from main import run_modelling
 
 PILOT_JOBS = [
-    ("Camptothecin", "pan-cancer", "both"),
+    ("Camptothecin", "pan-cancer", "mutation_expression"),
     ("Camptothecin", "pan-cancer", "mutations"),
     ("Camptothecin", "pan-cancer", "expression"),
     ("Camptothecin", "pan-cancer", "copy_number"),
     ("Camptothecin", "pan-cancer", "all"),
-    ("Camptothecin", "Breast Carcinoma", "both"),
-    ("Camptothecin", "Non-Small Cell Lung Carcinoma", "both"),
-    ("Camptothecin", "Glioblastoma", "both"),
-    ("Cisplatin", "pan-cancer", "both"),
+    ("Camptothecin", "Breast Carcinoma", "mutation_expression"),
+    ("Camptothecin", "Non-Small Cell Lung Carcinoma", "mutation_expression"),
+    ("Camptothecin", "Glioblastoma", "mutation_expression"),
+    ("Cisplatin", "pan-cancer", "mutation_expression"),
     ("Cisplatin", "Breast Carcinoma", "mutations"),
-    ("Paclitaxel", "pan-cancer", "both"),
+    ("Paclitaxel", "pan-cancer", "mutation_expression"),
     ("Paclitaxel", "Non-Small Cell Lung Carcinoma", "expression"),
 ]
 

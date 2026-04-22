@@ -5,17 +5,17 @@ BOOTSTRAPS="${BOOTSTRAPS:-10}"
 JOB_FILE="${JOB_FILE:-job.yml}"
 
 jobs=(
-  "Camptothecin|pan-cancer|both"
+  "Camptothecin|pan-cancer|mutation_expression"
   "Camptothecin|pan-cancer|mutations"
   "Camptothecin|pan-cancer|expression"
   "Camptothecin|pan-cancer|copy_number"
   "Camptothecin|pan-cancer|all"
-  "Camptothecin|Breast Carcinoma|both"
-  "Camptothecin|Non-Small Cell Lung Carcinoma|both"
-  "Camptothecin|Glioblastoma|both"
-  "Cisplatin|pan-cancer|both"
+  "Camptothecin|Breast Carcinoma|mutation_expression"
+  "Camptothecin|Non-Small Cell Lung Carcinoma|mutation_expression"
+  "Camptothecin|Glioblastoma|mutation_expression"
+  "Cisplatin|pan-cancer|mutation_expression"
   "Cisplatin|Breast Carcinoma|mutations"
-  "Paclitaxel|pan-cancer|both"
+  "Paclitaxel|pan-cancer|mutation_expression"
   "Paclitaxel|Non-Small Cell Lung Carcinoma|expression"
 )
 
