@@ -3,7 +3,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 from src.data_reader import prepare_expression, reduce_expression_features, \
-    prepare_mutations, sanity_check, prepare_copy_number, reduce_copy_number_features
+    prepare_mutations, sanity_check, prepare_copy_number, reduce_copy_number_features, select_top_variance_columns
 
 
 def get_prepared_gdsc_data(gdsc_path):
@@ -53,7 +53,7 @@ def get_prepared_mutations_data(mutations_path):
     return mutations
 
 
-def get_prepared_expression_data(expression_path, top_n=1000):
+def get_prepared_expression_data(expression_path):
     print('reading gene expression (10 sec)')
     expression_data = pd.read_csv(expression_path, low_memory=False)
 
@@ -65,12 +65,10 @@ def get_prepared_expression_data(expression_path, top_n=1000):
 
     expression = expression.rename(columns={'model_id': 'SANGER_MODEL_ID'})
 
-    expression = reduce_expression_features(expression, top_variance_top_n=top_n)
-
     return expression
 
 
-def get_prepared_cnv_data(cnv_path, top_n=500):
+def get_prepared_cnv_data(cnv_path):
     cnv_data = pd.read_csv(cnv_path, low_memory=False)
 
     print('COPY NUMBER DATA:')
@@ -79,7 +77,6 @@ def get_prepared_cnv_data(cnv_path, top_n=500):
 
     cnv = prepare_copy_number(cnv_data)
     cnv = cnv.rename(columns={'model_id': 'SANGER_MODEL_ID'})
-    cnv = reduce_copy_number_features(cnv, top_variance_top_n=top_n)
 
     return cnv
 
@@ -100,14 +97,22 @@ if __name__ == '__main__':
     mut = get_prepared_mutations_data(mutations_path='/Users/kristof/Downloads/mutations_summary_20260316.csv')
     write_parquet_data(mut, '../data/mutations.parquet')
 
-    EXPRESSION_TOP_N = 500
-    expr = get_prepared_expression_data(expression_path='/Users/kristof/Downloads/rnaseq_merged_rsem_tpm_20260323.csv',
-                                        top_n=EXPRESSION_TOP_N)
-    write_parquet_data(expr, f'../data/gene_expressions_{EXPRESSION_TOP_N}.parquet')
+    EXPRESSION_TOP_N = None  # or 500
+    expr = get_prepared_expression_data(expression_path='/Users/kristof/Downloads/rnaseq_merged_rsem_tpm_20260323.csv')
+    if EXPRESSION_TOP_N:
+        expr = reduce_expression_features(expr, top_variance_top_n=EXPRESSION_TOP_N)
+        write_parquet_data(expr, f'../data/gene_expressions_{EXPRESSION_TOP_N}.parquet')
+    else:
+        write_parquet_data(expr, '../data/gene_expressions.parquet')
+        order = select_top_variance_columns(expr, top_n=None)
+        write_parquet_data(order, '../data/gene_expressions_variance_order.parquet')
 
-    CNV_TOP_N = 500
-    cnv = get_prepared_cnv_data(
-        cnv_path='/Users/kristof/Downloads/WES_pureCN_CNV_genes_total_copy_number_20250207.csv',
-        top_n=CNV_TOP_N,
-    )
-    write_parquet_data(cnv, f'../data/copy_number_variations_{CNV_TOP_N}.parquet')
+    CNV_TOP_N = None  # or 500
+    cnv = get_prepared_cnv_data(cnv_path='/Users/kristof/Downloads/WES_pureCN_CNV_genes_total_copy_number_20250207.csv')
+    if CNV_TOP_N:
+        cnv = reduce_copy_number_features(cnv, top_variance_top_n=CNV_TOP_N)
+        write_parquet_data(cnv, f'../data/copy_number_variations_{CNV_TOP_N}.parquet')
+    else:
+        write_parquet_data(cnv, '../data/copy_number_variations.parquet')
+        order = select_top_variance_columns(cnv, top_n=None)
+        write_parquet_data(order, '../data/copy_number_variations_variance_order.parquet')

@@ -325,17 +325,17 @@ def reduce_copy_number_features(df, top_variance_top_n=500):
 
 def select_top_variance_columns(
     df: pd.DataFrame,
-    top_n: int = 1000,
+    top_n: int = 1000
 ):
-    if top_n <= 0:
-        raise ValueError("top_n must be > 0.")
-
     numeric_df = df.select_dtypes(include=["number"])
     if numeric_df.empty:
         raise ValueError("No numeric columns found for variance selection.")
 
     variances = numeric_df.var(axis=0, skipna=True)
     variances = variances.fillna(0.0)
+    if top_n is None:  # return order only
+        order = pd.DataFrame({"feature_column": variances.sort_values(ascending=False).index})
+        return order
     selected = variances.sort_values(ascending=False).head(top_n).index.tolist()
 
     if len(selected) < top_n:
