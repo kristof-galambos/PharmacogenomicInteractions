@@ -106,4 +106,4 @@ def run_modelling(data, feature_config="mutation_expression", random_state=42):
 
 if __name__ == '__main__':
     data = read_data(drug_name='Camptothecin')
-    y_test, y_test_pred, test_r, final_model, model_info = run_modelling(data)
+    y_test, y_test_pred, test_r, final_model, model_info = run_modelling(data, feature_config='copy_number')
