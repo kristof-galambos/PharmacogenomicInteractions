@@ -21,6 +21,8 @@ PILOT_JOBS = [
     ("Camptothecin", "pan-cancer", "both"),
     ("Camptothecin", "pan-cancer", "mutations"),
     ("Camptothecin", "pan-cancer", "expression"),
+    ("Camptothecin", "pan-cancer", "copy_number"),
+    ("Camptothecin", "pan-cancer", "all"),
     ("Camptothecin", "Breast Carcinoma", "both"),
     ("Camptothecin", "Non-Small Cell Lung Carcinoma", "both"),
     ("Camptothecin", "Glioblastoma", "both"),
@@ -44,6 +46,10 @@ def parse_args():
         "--expression-csv",
         default=str(DOWNLOADS_PATH / "rnaseq_merged_rsem_tpm_20260323.csv"),
         # default=str(REPO_ROOT / "data" / "rnaseq_merged_rsem_tpm_20260323.csv"),
+    )
+    parser.add_argument(
+        "--copy-number-csv",
+        default=str(DOWNLOADS_PATH / "WES_pureCN_CNV_genes_total_copy_number_20250207.csv"),
     )
     parser.add_argument(
         "--ic50-csv",
@@ -109,6 +115,7 @@ def run_pilot_job(args, drug_name, cancer_type, feature_config):
         args.ic50_csv,
         args.mutation_csv,
         args.expression_csv,
+        args.copy_number_csv,
         drug_name=drug_name,
         cancer_type=data_cancer_type,
     )

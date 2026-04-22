@@ -8,6 +8,8 @@ jobs=(
   "Camptothecin|pan-cancer|both"
   "Camptothecin|pan-cancer|mutations"
   "Camptothecin|pan-cancer|expression"
+  "Camptothecin|pan-cancer|copy_number"
+  "Camptothecin|pan-cancer|all"
   "Camptothecin|Breast Carcinoma|both"
   "Camptothecin|Non-Small Cell Lung Carcinoma|both"
   "Camptothecin|Glioblastoma|both"

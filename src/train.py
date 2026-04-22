@@ -1,6 +1,10 @@
 import argparse
 import json
 from pathlib import Path
+import sys
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT))
 
 import mlflow
 import mlflow.sklearn
@@ -15,13 +19,22 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mutation-csv", type=str, required=True)
     parser.add_argument("--expression-csv", type=str, required=True)
+    parser.add_argument("--copy-number-csv", type=str, required=True)
     parser.add_argument("--ic50-csv", type=str, required=True)
     parser.add_argument("--drug-name", type=str, required=True)
     parser.add_argument("--cancer-type", type=str, default="pan-cancer")
     parser.add_argument(
         "--feature-config",
         type=str,
-        choices=["mutations", "expression", "both"],
+        choices=[
+            "mutations",
+            "expression",
+            "copy_number",
+            "both",
+            "mutations_copy_number",
+            "expression_copy_number",
+            "all",
+        ],
         default="both",
     )
     parser.add_argument("--n-bootstraps", type=int, default=1)
@@ -65,6 +78,7 @@ def main():
         args.ic50_csv,
         args.mutation_csv,
         args.expression_csv,
+        args.copy_number_csv,
         drug_name=args.drug_name,
         cancer_type=cancer_type,
     )

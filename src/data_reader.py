@@ -1,13 +1,13 @@
 import numpy as np
 import pandas as pd
-import sys
 
-from src.utils import get_gene_expression_columns
+from src.utils import get_copy_number_columns, get_gene_expression_columns
 
 
 def read_data(gdsc_path='/Users/kristof/Downloads/GDSC2_fitted_dose_response_27Oct23.xlsx',
               mutations_path='/Users/kristof/Downloads/mutations_summary_20260316.csv',
               expression_path='/Users/kristof/Downloads/rnaseq_merged_rsem_tpm_20260323.csv',
+              copy_number_path='/Users/kristof/Downloads/WES_pureCN_CNV_genes_total_copy_number_20250207.csv',
               drug_name='Ulixertinib', cancer_type=None):
     print('reading data')
     print('reading gdsc (62 sec)')
@@ -17,7 +17,9 @@ def read_data(gdsc_path='/Users/kristof/Downloads/GDSC2_fitted_dose_response_27O
     print('reading mutations (all: 33 sec, summary: few sec)')
     mutations_data = pd.read_csv(mutations_path)
     print('reading gene expression (10 sec)')
-    expression_data = pd.read_csv(expression_path)
+    expression_data = pd.read_csv(expression_path, low_memory=False)
+    print('reading copy number')
+    copy_number_data = pd.read_csv(copy_number_path, low_memory=False)
 
     print('GDSC DATA:')
     print(gdsc_data.shape)
@@ -25,22 +27,27 @@ def read_data(gdsc_path='/Users/kristof/Downloads/GDSC2_fitted_dose_response_27O
     print('MUTATIONS DATA:')
     print(mutations_data.shape)
     print(mutations_data.columns)
-    # print(cnv_data.columns)
     print('GENE EXPRESSION DATA:')
     print(expression_data.shape)
     print(expression_data.columns)
+    print('COPY NUMBER DATA:')
+    print(copy_number_data.shape)
+    print(copy_number_data.columns)
 
     print('preparing data')
     mutations = prepare_mutations(mutations_data)
     expression = prepare_expression(expression_data)
+    copy_number = prepare_copy_number(copy_number_data)
     print(mutations.shape)
     print(expression.shape)
+    print(copy_number.shape)
     sanity_check(mutations)
 
     gdsc_subset = gdsc_data[["DRUG_NAME", "CANCER_TYPE", "SANGER_MODEL_ID", "LN_IC50"]].copy()
     gdsc_subset["SANGER_MODEL_ID"] = gdsc_subset["SANGER_MODEL_ID"].astype(str)
     mutations = mutations.rename(columns={'model_id': 'SANGER_MODEL_ID'})
     expression = expression.rename(columns={'model_id': 'SANGER_MODEL_ID'})
+    copy_number = copy_number.rename(columns={'model_id': 'SANGER_MODEL_ID'})
 
     dataset = gdsc_subset.merge(
         mutations,
@@ -50,6 +57,12 @@ def read_data(gdsc_path='/Users/kristof/Downloads/GDSC2_fitted_dose_response_27O
     expression = reduce_expression_features(expression)
     dataset = dataset.merge(
         expression,
+        on="SANGER_MODEL_ID",
+        how="inner",
+    )
+    copy_number = reduce_copy_number_features(copy_number)
+    dataset = dataset.merge(
+        copy_number,
         on="SANGER_MODEL_ID",
         how="inner",
     )
@@ -287,6 +300,26 @@ def reduce_expression_features(df, top_variance_top_n=500):
         return kept
     else:
         print('Pre-join top-variance enabled, but no gene columns were detected in gene expression data.')
+        return df
+
+
+def reduce_copy_number_features(df, top_variance_top_n=500):
+    copy_number_cols = get_copy_number_columns(df.columns)
+    if copy_number_cols:
+        top_variance_copy_number_cols = select_top_variance_columns(
+            df[copy_number_cols],
+            top_n=top_variance_top_n,
+        )
+        keep_cols = ['SANGER_MODEL_ID'] + top_variance_copy_number_cols
+        kept = df[keep_cols]
+        print(
+            f'Pre-join top-variance selection on copy number data completed: '
+            f'kept {len(top_variance_copy_number_cols)} genes (top_n={top_variance_top_n}), '
+            f'copy number data shape now={kept.shape}'
+        )
+        return kept
+    else:
+        print('Pre-join top-variance enabled, but no columns were detected in copy number data.')
         return df
 
 

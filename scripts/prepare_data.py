@@ -3,7 +3,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 from src.data_reader import prepare_expression, reduce_expression_features, \
-    prepare_mutations, sanity_check, prepare_copy_number
+    prepare_mutations, sanity_check, prepare_copy_number, reduce_copy_number_features
 
 
 def get_prepared_gdsc_data(gdsc_path):
@@ -55,7 +55,7 @@ def get_prepared_mutations_data(mutations_path):
 
 def get_prepared_expression_data(expression_path, top_n=1000):
     print('reading gene expression (10 sec)')
-    expression_data = pd.read_csv(expression_path)
+    expression_data = pd.read_csv(expression_path, low_memory=False)
 
     print('GENE EXPRESSION DATA:')
     print(expression_data.shape)
@@ -70,7 +70,7 @@ def get_prepared_expression_data(expression_path, top_n=1000):
     return expression
 
 
-def get_prepared_cnv_data(cnv_path):
+def get_prepared_cnv_data(cnv_path, top_n=500):
     cnv_data = pd.read_csv(cnv_path, low_memory=False)
 
     print('COPY NUMBER DATA:')
@@ -79,6 +79,7 @@ def get_prepared_cnv_data(cnv_path):
 
     cnv = prepare_copy_number(cnv_data)
     cnv = cnv.rename(columns={'model_id': 'SANGER_MODEL_ID'})
+    cnv = reduce_copy_number_features(cnv, top_variance_top_n=top_n)
 
     return cnv
 
@@ -104,5 +105,8 @@ if __name__ == '__main__':
                                         top_n=TOP_N)
     write_parquet_data(expr, f'../data/gene_expressions_{TOP_N}.parquet')
 
-    cnv = get_prepared_cnv_data(cnv_path='/Users/kristof/Downloads/WES_pureCN_CNV_genes_total_copy_number_20250207.csv')
-    write_parquet_data(cnv, '../data/copy_number_variations.parquet')
+    cnv = get_prepared_cnv_data(
+        cnv_path='/Users/kristof/Downloads/WES_pureCN_CNV_genes_total_copy_number_20250207.csv',
+        top_n=TOP_N,
+    )
+    write_parquet_data(cnv, f'../data/copy_number_variations_{TOP_N}.parquet')

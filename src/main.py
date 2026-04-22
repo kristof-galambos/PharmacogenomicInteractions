@@ -6,23 +6,38 @@ from sklearn.preprocessing import StandardScaler
 from src.data_reader import read_data
 from src.data_split import split_data
 from src.model import fit_en, predict_en
-from src.utils import get_mutation_columns, pearson_correlation, get_gene_expression_columns
+from src.utils import (
+    get_copy_number_columns,
+    get_gene_expression_columns,
+    get_mutation_columns,
+    pearson_correlation,
+)
 
 
 def select_feature_columns(data, feature_config):
     mutation_columns = get_mutation_columns(data.columns)
     gene_expression_columns = get_gene_expression_columns(data.columns)
+    copy_number_columns = get_copy_number_columns(data.columns)
 
     if feature_config == "mutations":
         return mutation_columns
     if feature_config == "expression":
         return gene_expression_columns
+    if feature_config == "copy_number":
+        return copy_number_columns
     if feature_config == "both":
         return mutation_columns + gene_expression_columns
+    if feature_config == "mutations_copy_number":
+        return mutation_columns + copy_number_columns
+    if feature_config == "expression_copy_number":
+        return gene_expression_columns + copy_number_columns
+    if feature_config == "all":
+        return mutation_columns + gene_expression_columns + copy_number_columns
 
     raise ValueError(
         f"Unknown feature_config={feature_config!r}. "
-        "Expected one of: mutations, expression, both."
+        "Expected one of: mutations, expression, copy_number, both, "
+        "mutations_copy_number, expression_copy_number, all."
     )
 
 

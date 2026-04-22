@@ -4,6 +4,7 @@ command: >-
   python src/train.py
   --mutation-csv "${{inputs.mutation_csv}}"
   --expression-csv "${{inputs.expression_csv}}"
+  --copy-number-csv "${{inputs.copy_number_csv}}"
   --ic50-csv "${{inputs.ic50_csv}}"
   --drug-name "${{inputs.drug_name}}"
   --cancer-type "${{inputs.cancer_type}}"
@@ -23,6 +24,9 @@ inputs:
   expression_csv:
     type: uri_file
     path: ./data/rnaseq_merged_rsem_tpm_20260323.csv
+  copy_number_csv:
+    type: uri_file
+    path: ./data/WES_pureCN_CNV_genes_total_copy_number_20250207.csv
   ic50_csv:
     type: uri_file
     path: ./data/GDSC2_fitted_dose_response_27Oct23.xlsx

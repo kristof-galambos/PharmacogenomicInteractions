@@ -9,6 +9,10 @@ def get_gene_expression_columns(cols):
     return [x for x in cols if x.startswith('GEX_')]
 
 
+def get_copy_number_columns(cols):
+    return [x for x in cols if x.startswith('CNV_')]
+
+
 def pearson_correlation(y_true, y_pred):
     y_true = np.asarray(y_true, dtype=float)
     y_pred = np.asarray(y_pred, dtype=float)
