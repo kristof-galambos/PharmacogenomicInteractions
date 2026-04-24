@@ -2,10 +2,1234 @@ $schema: http://azureml/sdk-2-0/FeatureSetSpec.json
 
 source:
   type: parquet
-  path: abfss://pgx-features@<storage-account-name>.dfs.core.windows.net/molecular/mutations/v1/mutations.parquet
+  path: abfss://pgx-features@pgxstorage.dfs.core.windows.net/molecular/mutations/v1/mutations.parquet
   timestamp_column:
     name: feature_ts
-features: []
+features:
+  - name: MUT_ABCB1
+    type: integer
+  - name: MUT_ABI1
+    type: integer
+  - name: MUT_ABL1
+    type: integer
+  - name: MUT_ABL2
+    type: integer
+  - name: MUT_ACVR1
+    type: integer
+  - name: MUT_ACVR2A
+    type: integer
+  - name: MUT_AFF1
+    type: integer
+  - name: MUT_AFF3
+    type: integer
+  - name: MUT_AJUBA
+    type: integer
+  - name: MUT_AKT1
+    type: integer
+  - name: MUT_AKT2
+    type: integer
+  - name: MUT_AKT3
+    type: integer
+  - name: MUT_ALB
+    type: integer
+  - name: MUT_ALK
+    type: integer
+  - name: MUT_AMER1
+    type: integer
+  - name: MUT_APC
+    type: integer
+  - name: MUT_APOBEC3B
+    type: integer
+  - name: MUT_AR
+    type: integer
+  - name: MUT_ARAF
+    type: integer
+  - name: MUT_ARHGAP26
+    type: integer
+  - name: MUT_ARHGAP35
+    type: integer
+  - name: MUT_ARHGAP5
+    type: integer
+  - name: MUT_ARHGEF10
+    type: integer
+  - name: MUT_ARHGEF10L
+    type: integer
+  - name: MUT_ARHGEF12
+    type: integer
+  - name: MUT_ARID1A
+    type: integer
+  - name: MUT_ARID1B
+    type: integer
+  - name: MUT_ARID2
+    type: integer
+  - name: MUT_ARNT
+    type: integer
+  - name: MUT_ASXL1
+    type: integer
+  - name: MUT_ASXL2
+    type: integer
+  - name: MUT_ATF7IP
+    type: integer
+  - name: MUT_ATG7
+    type: integer
+  - name: MUT_ATM
+    type: integer
+  - name: MUT_ATP1A1
+    type: integer
+  - name: MUT_ATP2B3
+    type: integer
+  - name: MUT_ATR
+    type: integer
+  - name: MUT_ATRX
+    type: integer
+  - name: MUT_AXIN1
+    type: integer
+  - name: MUT_AXIN2
+    type: integer
+  - name: MUT_B2M
+    type: integer
+  - name: MUT_BAP1
+    type: integer
+  - name: MUT_BARD1
+    type: integer
+  - name: MUT_BAX
+    type: integer
+  - name: MUT_BCL10
+    type: integer
+  - name: MUT_BCL11A
+    type: integer
+  - name: MUT_BCL11B
+    type: integer
+  - name: MUT_BCL2
+    type: integer
+  - name: MUT_BCL2L12
+    type: integer
+  - name: MUT_BCL6
+    type: integer
+  - name: MUT_BCL7A
+    type: integer
+  - name: MUT_BCL9
+    type: integer
+  - name: MUT_BCL9L
+    type: integer
+  - name: MUT_BCLAF1
+    type: integer
+  - name: MUT_BCOR
+    type: integer
+  - name: MUT_BCORL1
+    type: integer
+  - name: MUT_BCR
+    type: integer
+  - name: MUT_BIRC3
+    type: integer
+  - name: MUT_BIRC6
+    type: integer
+  - name: MUT_BLM
+    type: integer
+  - name: MUT_BMPR1A
+    type: integer
+  - name: MUT_BMPR2
+    type: integer
+  - name: MUT_BRAF
+    type: integer
+  - name: MUT_BRCA1
+    type: integer
+  - name: MUT_BRCA2
+    type: integer
+  - name: MUT_BRD7
+    type: integer
+  - name: MUT_BRF1
+    type: integer
+  - name: MUT_BRIP1
+    type: integer
+  - name: MUT_BTG1
+    type: integer
+  - name: MUT_BTK
+    type: integer
+  - name: MUT_BUB1B
+    type: integer
+  - name: MUT_CACNA1D
+    type: integer
+  - name: MUT_CAMTA1
+    type: integer
+  - name: MUT_CARD11
+    type: integer
+  - name: MUT_CARS1
+    type: integer
+  - name: MUT_CASP8
+    type: integer
+  - name: MUT_CASZ1
+    type: integer
+  - name: MUT_CBFA2T3
+    type: integer
+  - name: MUT_CBFB
+    type: integer
+  - name: MUT_CBL
+    type: integer
+  - name: MUT_CBLB
+    type: integer
+  - name: MUT_CBLC
+    type: integer
+  - name: MUT_CCDC169-SOHLH2
+    type: integer
+  - name: MUT_CCDC6
+    type: integer
+  - name: MUT_CCNB1IP1
+    type: integer
+  - name: MUT_CCND1
+    type: integer
+  - name: MUT_CCND2
+    type: integer
+  - name: MUT_CCND3
+    type: integer
+  - name: MUT_CCR7
+    type: integer
+  - name: MUT_CD274
+    type: integer
+  - name: MUT_CD58
+    type: integer
+  - name: MUT_CDC73
+    type: integer
+  - name: MUT_CDH1
+    type: integer
+  - name: MUT_CDH10
+    type: integer
+  - name: MUT_CDH11
+    type: integer
+  - name: MUT_CDK12
+    type: integer
+  - name: MUT_CDK4
+    type: integer
+  - name: MUT_CDKN1A
+    type: integer
+  - name: MUT_CDKN1B
+    type: integer
+  - name: MUT_CDKN2A
+    type: integer
+  - name: MUT_CDKN2C
+    type: integer
+  - name: MUT_CDX2
+    type: integer
+  - name: MUT_CHD2
+    type: integer
+  - name: MUT_CHD4
+    type: integer
+  - name: MUT_CHEK2
+    type: integer
+  - name: MUT_CIC
+    type: integer
+  - name: MUT_CIITA
+    type: integer
+  - name: MUT_CLIP1
+    type: integer
+  - name: MUT_CLTC
+    type: integer
+  - name: MUT_CLTCL1
+    type: integer
+  - name: MUT_CMTR2
+    type: integer
+  - name: MUT_CNOT3
+    type: integer
+  - name: MUT_COL1A1
+    type: integer
+  - name: MUT_CR1
+    type: integer
+  - name: MUT_CREB3L1
+    type: integer
+  - name: MUT_CREBBP
+    type: integer
+  - name: MUT_CRNKL1
+    type: integer
+  - name: MUT_CRTC1
+    type: integer
+  - name: MUT_CTCF
+    type: integer
+  - name: MUT_CTNNB1
+    type: integer
+  - name: MUT_CUL3
+    type: integer
+  - name: MUT_CUX1
+    type: integer
+  - name: MUT_CXCR4
+    type: integer
+  - name: MUT_CYLD
+    type: integer
+  - name: MUT_CYP2C8
+    type: integer
+  - name: MUT_DAXX
+    type: integer
+  - name: MUT_DAZAP1
+    type: integer
+  - name: MUT_DCAF12L2
+    type: integer
+  - name: MUT_DCC
+    type: integer
+  - name: MUT_DCSTAMP
+    type: integer
+  - name: MUT_DDB2
+    type: integer
+  - name: MUT_DDR2
+    type: integer
+  - name: MUT_DDX10
+    type: integer
+  - name: MUT_DDX3X
+    type: integer
+  - name: MUT_DDX6
+    type: integer
+  - name: MUT_DGCR8
+    type: integer
+  - name: MUT_DHX9
+    type: integer
+  - name: MUT_DICER1
+    type: integer
+  - name: MUT_DIS3
+    type: integer
+  - name: MUT_DNAJB1
+    type: integer
+  - name: MUT_DNM2
+    type: integer
+  - name: MUT_DNMT3A
+    type: integer
+  - name: MUT_DOT1L
+    type: integer
+  - name: MUT_DROSHA
+    type: integer
+  - name: MUT_DTX1
+    type: integer
+  - name: MUT_DUSP16
+    type: integer
+  - name: MUT_EBF1
+    type: integer
+  - name: MUT_EFTUD2
+    type: integer
+  - name: MUT_EGFR
+    type: integer
+  - name: MUT_EGR2
+    type: integer
+  - name: MUT_EHD2
+    type: integer
+  - name: MUT_EIF1AX
+    type: integer
+  - name: MUT_EIF3E
+    type: integer
+  - name: MUT_ELF3
+    type: integer
+  - name: MUT_ELF4
+    type: integer
+  - name: MUT_ELL
+    type: integer
+  - name: MUT_ELN
+    type: integer
+  - name: MUT_EML4
+    type: integer
+  - name: MUT_ENPEP
+    type: integer
+  - name: MUT_EP300
+    type: integer
+  - name: MUT_EPAS1
+    type: integer
+  - name: MUT_EPHA2
+    type: integer
+  - name: MUT_EPHA3
+    type: integer
+  - name: MUT_EPHA7
+    type: integer
+  - name: MUT_EPS15
+    type: integer
+  - name: MUT_ERBB2
+    type: integer
+  - name: MUT_ERBB3
+    type: integer
+  - name: MUT_ERBB4
+    type: integer
+  - name: MUT_ERCC2
+    type: integer
+  - name: MUT_ERCC3
+    type: integer
+  - name: MUT_ERCC4
+    type: integer
+  - name: MUT_ERCC5
+    type: integer
+  - name: MUT_ERG
+    type: integer
+  - name: MUT_ESR1
+    type: integer
+  - name: MUT_ESRRA
+    type: integer
+  - name: MUT_ETNK1
+    type: integer
+  - name: MUT_ETV4
+    type: integer
+  - name: MUT_ETV5
+    type: integer
+  - name: MUT_ETV6
+    type: integer
+  - name: MUT_EXT1
+    type: integer
+  - name: MUT_EXT2
+    type: integer
+  - name: MUT_EZH2
+    type: integer
+  - name: MUT_FAM135B
+    type: integer
+  - name: MUT_FAM174B
+    type: integer
+  - name: MUT_FAM186A
+    type: integer
+  - name: MUT_FANCA
+    type: integer
+  - name: MUT_FANCC
+    type: integer
+  - name: MUT_FANCD2
+    type: integer
+  - name: MUT_FANCE
+    type: integer
+  - name: MUT_FANCF
+    type: integer
+  - name: MUT_FANCG
+    type: integer
+  - name: MUT_FANCM
+    type: integer
+  - name: MUT_FAS
+    type: integer
+  - name: MUT_FAT1
+    type: integer
+  - name: MUT_FAT2
+    type: integer
+  - name: MUT_FAT3
+    type: integer
+  - name: MUT_FAT4
+    type: integer
+  - name: MUT_FBN2
+    type: integer
+  - name: MUT_FBXO11
+    type: integer
+  - name: MUT_FBXW7
+    type: integer
+  - name: MUT_FES
+    type: integer
+  - name: MUT_FGD5
+    type: integer
+  - name: MUT_FGFR1
+    type: integer
+  - name: MUT_FGFR2
+    type: integer
+  - name: MUT_FGFR3
+    type: integer
+  - name: MUT_FGFR4
+    type: integer
+  - name: MUT_FH
+    type: integer
+  - name: MUT_FHIT
+    type: integer
+  - name: MUT_FLCN
+    type: integer
+  - name: MUT_FLT3
+    type: integer
+  - name: MUT_FLT4
+    type: integer
+  - name: MUT_FN1
+    type: integer
+  - name: MUT_FOXA1
+    type: integer
+  - name: MUT_FOXA2
+    type: integer
+  - name: MUT_FOXD4L1
+    type: integer
+  - name: MUT_FOXL2
+    type: integer
+  - name: MUT_FOXO1
+    type: integer
+  - name: MUT_FOXO3
+    type: integer
+  - name: MUT_FOXO4
+    type: integer
+  - name: MUT_FOXP1
+    type: integer
+  - name: MUT_FUBP1
+    type: integer
+  - name: MUT_FUS
+    type: integer
+  - name: MUT_GATA1
+    type: integer
+  - name: MUT_GATA2
+    type: integer
+  - name: MUT_GATA3
+    type: integer
+  - name: MUT_GJB2
+    type: integer
+  - name: MUT_GLI1
+    type: integer
+  - name: MUT_GMPS
+    type: integer
+  - name: MUT_GNA11
+    type: integer
+  - name: MUT_GNA13
+    type: integer
+  - name: MUT_GNAI2
+    type: integer
+  - name: MUT_GNAQ
+    type: integer
+  - name: MUT_GNAS
+    type: integer
+  - name: MUT_GPC3
+    type: integer
+  - name: MUT_GRIN2A
+    type: integer
+  - name: MUT_H3-3A
+    type: integer
+  - name: MUT_H3C2
+    type: integer
+  - name: MUT_HERC2
+    type: integer
+  - name: MUT_HGF
+    type: integer
+  - name: MUT_HIP1
+    type: integer
+  - name: MUT_HLA-A
+    type: integer
+  - name: MUT_HLA-B
+    type: integer
+  - name: MUT_HNF1A
+    type: integer
+  - name: MUT_HNRNPA2B1
+    type: integer
+  - name: MUT_HOXA11
+    type: integer
+  - name: MUT_HOXA9
+    type: integer
+  - name: MUT_HOXC13
+    type: integer
+  - name: MUT_HOXD13
+    type: integer
+  - name: MUT_HRAS
+    type: integer
+  - name: MUT_HSP90AB1
+    type: integer
+  - name: MUT_HSPG2
+    type: integer
+  - name: MUT_HTRA2
+    type: integer
+  - name: MUT_ID3
+    type: integer
+  - name: MUT_IDH1
+    type: integer
+  - name: MUT_IDH2
+    type: integer
+  - name: MUT_IFNAR1
+    type: integer
+  - name: MUT_IFNGR1
+    type: integer
+  - name: MUT_IKBKB
+    type: integer
+  - name: MUT_IKZF1
+    type: integer
+  - name: MUT_IKZF3
+    type: integer
+  - name: MUT_IL7R
+    type: integer
+  - name: MUT_ING1
+    type: integer
+  - name: MUT_INO80
+    type: integer
+  - name: MUT_IRAK1
+    type: integer
+  - name: MUT_IRF1
+    type: integer
+  - name: MUT_IRF4
+    type: integer
+  - name: MUT_IRS4
+    type: integer
+  - name: MUT_JAK1
+    type: integer
+  - name: MUT_JAK2
+    type: integer
+  - name: MUT_JAK3
+    type: integer
+  - name: MUT_KAT6A
+    type: integer
+  - name: MUT_KAT6B
+    type: integer
+  - name: MUT_KDM3B
+    type: integer
+  - name: MUT_KDM5A
+    type: integer
+  - name: MUT_KDM5C
+    type: integer
+  - name: MUT_KDM6A
+    type: integer
+  - name: MUT_KDR
+    type: integer
+  - name: MUT_KEAP1
+    type: integer
+  - name: MUT_KEL
+    type: integer
+  - name: MUT_KIFC1
+    type: integer
+  - name: MUT_KIT
+    type: integer
+  - name: MUT_KLF4
+    type: integer
+  - name: MUT_KLF5
+    type: integer
+  - name: MUT_KLF6
+    type: integer
+  - name: MUT_KLHL36
+    type: integer
+  - name: MUT_KLHL6
+    type: integer
+  - name: MUT_KMT2A
+    type: integer
+  - name: MUT_KMT2B
+    type: integer
+  - name: MUT_KMT2C
+    type: integer
+  - name: MUT_KMT2D
+    type: integer
+  - name: MUT_KNL1
+    type: integer
+  - name: MUT_KRAS
+    type: integer
+  - name: MUT_LATS1
+    type: integer
+  - name: MUT_LATS2
+    type: integer
+  - name: MUT_LDB1
+    type: integer
+  - name: MUT_LEF1
+    type: integer
+  - name: MUT_LIFR
+    type: integer
+  - name: MUT_LOX
+    type: integer
+  - name: MUT_LPAR4
+    type: integer
+  - name: MUT_LPP
+    type: integer
+  - name: MUT_LRIG3
+    type: integer
+  - name: MUT_LRP1B
+    type: integer
+  - name: MUT_LTB
+    type: integer
+  - name: MUT_LY75-CD302
+    type: integer
+  - name: MUT_LZTR1
+    type: integer
+  - name: MUT_MAF
+    type: integer
+  - name: MUT_MALT1
+    type: integer
+  - name: MUT_MAML2
+    type: integer
+  - name: MUT_MAP2
+    type: integer
+  - name: MUT_MAP2K1
+    type: integer
+  - name: MUT_MAP2K2
+    type: integer
+  - name: MUT_MAP2K4
+    type: integer
+  - name: MUT_MAP2K7
+    type: integer
+  - name: MUT_MAP3K1
+    type: integer
+  - name: MUT_MAP3K13
+    type: integer
+  - name: MUT_MARK2
+    type: integer
+  - name: MUT_MAX
+    type: integer
+  - name: MUT_MB21D2
+    type: integer
+  - name: MUT_MCM3AP
+    type: integer
+  - name: MUT_MDM2
+    type: integer
+  - name: MUT_MDM4
+    type: integer
+  - name: MUT_MECOM
+    type: integer
+  - name: MUT_MED12
+    type: integer
+  - name: MUT_MEF2B
+    type: integer
+  - name: MUT_MEN1
+    type: integer
+  - name: MUT_MET
+    type: integer
+  - name: MUT_MGA
+    type: integer
+  - name: MUT_MITF
+    type: integer
+  - name: MUT_MLF1
+    type: integer
+  - name: MUT_MLH1
+    type: integer
+  - name: MUT_MLLT1
+    type: integer
+  - name: MUT_MLLT3
+    type: integer
+  - name: MUT_MRTFA
+    type: integer
+  - name: MUT_MSH2
+    type: integer
+  - name: MUT_MSH6
+    type: integer
+  - name: MUT_MSN
+    type: integer
+  - name: MUT_MTOR
+    type: integer
+  - name: MUT_MUTYH
+    type: integer
+  - name: MUT_MYC
+    type: integer
+  - name: MUT_MYCN
+    type: integer
+  - name: MUT_MYD88
+    type: integer
+  - name: MUT_MYH11
+    type: integer
+  - name: MUT_MYH9
+    type: integer
+  - name: MUT_MYO5A
+    type: integer
+  - name: MUT_NAB2
+    type: integer
+  - name: MUT_NBEA
+    type: integer
+  - name: MUT_NBN
+    type: integer
+  - name: MUT_NCOA1
+    type: integer
+  - name: MUT_NCOA2
+    type: integer
+  - name: MUT_NCOA4
+    type: integer
+  - name: MUT_NCOR1
+    type: integer
+  - name: MUT_NCOR2
+    type: integer
+  - name: MUT_NDRG1
+    type: integer
+  - name: MUT_NEFH
+    type: integer
+  - name: MUT_NF1
+    type: integer
+  - name: MUT_NF2
+    type: integer
+  - name: MUT_NFATC2
+    type: integer
+  - name: MUT_NFE2L2
+    type: integer
+  - name: MUT_NFKB2
+    type: integer
+  - name: MUT_NFKBIA
+    type: integer
+  - name: MUT_NFKBIE
+    type: integer
+  - name: MUT_NIN
+    type: integer
+  - name: MUT_NIPBL
+    type: integer
+  - name: MUT_NKTR
+    type: integer
+  - name: MUT_NKX2-1
+    type: integer
+  - name: MUT_NONO
+    type: integer
+  - name: MUT_NOTCH1
+    type: integer
+  - name: MUT_NOTCH2
+    type: integer
+  - name: MUT_NPEPPS
+    type: integer
+  - name: MUT_NPM1
+    type: integer
+  - name: MUT_NPRL2
+    type: integer
+  - name: MUT_NRAS
+    type: integer
+  - name: MUT_NRG1
+    type: integer
+  - name: MUT_NRK
+    type: integer
+  - name: MUT_NRP1
+    type: integer
+  - name: MUT_NSD1
+    type: integer
+  - name: MUT_NSD2
+    type: integer
+  - name: MUT_NT5C3A
+    type: integer
+  - name: MUT_NTRK1
+    type: integer
+  - name: MUT_NTRK3
+    type: integer
+  - name: MUT_NUP214
+    type: integer
+  - name: MUT_NXF1
+    type: integer
+  - name: MUT_P2RY8
+    type: integer
+  - name: MUT_PABPC1
+    type: integer
+  - name: MUT_PAK2
+    type: integer
+  - name: MUT_PALB2
+    type: integer
+  - name: MUT_PARP4
+    type: integer
+  - name: MUT_PATZ1
+    type: integer
+  - name: MUT_PAX5
+    type: integer
+  - name: MUT_PBRM1
+    type: integer
+  - name: MUT_PCBP1
+    type: integer
+  - name: MUT_PCDH17
+    type: integer
+  - name: MUT_PCMTD1
+    type: integer
+  - name: MUT_PDE4DIP
+    type: integer
+  - name: MUT_PDGFRA
+    type: integer
+  - name: MUT_PDGFRB
+    type: integer
+  - name: MUT_PDPR
+    type: integer
+  - name: MUT_PEG3
+    type: integer
+  - name: MUT_PER1
+    type: integer
+  - name: MUT_PHF6
+    type: integer
+  - name: MUT_PHOX2B
+    type: integer
+  - name: MUT_PIK3CA
+    type: integer
+  - name: MUT_PIK3CB
+    type: integer
+  - name: MUT_PIK3R1
+    type: integer
+  - name: MUT_PIM1
+    type: integer
+  - name: MUT_PLAG1
+    type: integer
+  - name: MUT_PLCB4
+    type: integer
+  - name: MUT_PLCG1
+    type: integer
+  - name: MUT_PML
+    type: integer
+  - name: MUT_PMS2
+    type: integer
+  - name: MUT_POLD1
+    type: integer
+  - name: MUT_POLE
+    type: integer
+  - name: MUT_POLQ
+    type: integer
+  - name: MUT_POT1
+    type: integer
+  - name: MUT_POU2F2
+    type: integer
+  - name: MUT_PPARG
+    type: integer
+  - name: MUT_PPM1D
+    type: integer
+  - name: MUT_PPP2R1A
+    type: integer
+  - name: MUT_PPP3CA
+    type: integer
+  - name: MUT_PPP6C
+    type: integer
+  - name: MUT_PPT2
+    type: integer
+  - name: MUT_PRDM1
+    type: integer
+  - name: MUT_PRDM2
+    type: integer
+  - name: MUT_PREX2
+    type: integer
+  - name: MUT_PRF1
+    type: integer
+  - name: MUT_PRKAR1A
+    type: integer
+  - name: MUT_PRKCB
+    type: integer
+  - name: MUT_PRKCD
+    type: integer
+  - name: MUT_PRKD2
+    type: integer
+  - name: MUT_PRR14
+    type: integer
+  - name: MUT_PTCH1
+    type: integer
+  - name: MUT_PTEN
+    type: integer
+  - name: MUT_PTK6
+    type: integer
+  - name: MUT_PTMA
+    type: integer
+  - name: MUT_PTPN11
+    type: integer
+  - name: MUT_PTPN13
+    type: integer
+  - name: MUT_PTPN14
+    type: integer
+  - name: MUT_PTPN6
+    type: integer
+  - name: MUT_PTPRB
+    type: integer
+  - name: MUT_PTPRC
+    type: integer
+  - name: MUT_PTPRD
+    type: integer
+  - name: MUT_PTPRK
+    type: integer
+  - name: MUT_PTPRT
+    type: integer
+  - name: MUT_QKI
+    type: integer
+  - name: MUT_RABEP1
+    type: integer
+  - name: MUT_RAC1
+    type: integer
+  - name: MUT_RAD21
+    type: integer
+  - name: MUT_RAD51B
+    type: integer
+  - name: MUT_RAD51C
+    type: integer
+  - name: MUT_RAD51D
+    type: integer
+  - name: MUT_RAF1
+    type: integer
+  - name: MUT_RALGDS
+    type: integer
+  - name: MUT_RANBP2
+    type: integer
+  - name: MUT_RARA
+    type: integer
+  - name: MUT_RASA1
+    type: integer
+  - name: MUT_RASA2
+    type: integer
+  - name: MUT_RB1
+    type: integer
+  - name: MUT_RBFOX1
+    type: integer
+  - name: MUT_RBM10
+    type: integer
+  - name: MUT_RBM15
+    type: integer
+  - name: MUT_RBM38
+    type: integer
+  - name: MUT_RECQL4
+    type: integer
+  - name: MUT_RELA
+    type: integer
+  - name: MUT_RET
+    type: integer
+  - name: MUT_RGL3
+    type: integer
+  - name: MUT_RGPD3
+    type: integer
+  - name: MUT_RGS7
+    type: integer
+  - name: MUT_RHOA
+    type: integer
+  - name: MUT_RHOH
+    type: integer
+  - name: MUT_RHPN2
+    type: integer
+  - name: MUT_RIPK1
+    type: integer
+  - name: MUT_RMI2
+    type: integer
+  - name: MUT_RNF213
+    type: integer
+  - name: MUT_RNF43
+    type: integer
+  - name: MUT_RNF6
+    type: integer
+  - name: MUT_RPL10
+    type: integer
+  - name: MUT_RPL22
+    type: integer
+  - name: MUT_RPL5
+    type: integer
+  - name: MUT_RPS3A
+    type: integer
+  - name: MUT_RPS6KA3
+    type: integer
+  - name: MUT_RRAS2
+    type: integer
+  - name: MUT_RSPH10B2
+    type: integer
+  - name: MUT_RSPO2
+    type: integer
+  - name: MUT_RUNX1
+    type: integer
+  - name: MUT_RUNX1T1
+    type: integer
+  - name: MUT_RXRA
+    type: integer
+  - name: MUT_SALL4
+    type: integer
+  - name: MUT_SATB1
+    type: integer
+  - name: MUT_SBDS
+    type: integer
+  - name: MUT_SDHA
+    type: integer
+  - name: MUT_SDHB
+    type: integer
+  - name: MUT_SDHD
+    type: integer
+  - name: MUT_SEPTIN9
+    type: integer
+  - name: MUT_SETBP1
+    type: integer
+  - name: MUT_SETD1B
+    type: integer
+  - name: MUT_SETD2
+    type: integer
+  - name: MUT_SETDB1
+    type: integer
+  - name: MUT_SF3B1
+    type: integer
+  - name: MUT_SFMBT2
+    type: integer
+  - name: MUT_SFPQ
+    type: integer
+  - name: MUT_SFRP4
+    type: integer
+  - name: MUT_SGK1
+    type: integer
+  - name: MUT_SH2B3
+    type: integer
+  - name: MUT_SIN3A
+    type: integer
+  - name: MUT_SIRPA
+    type: integer
+  - name: MUT_SIX1
+    type: integer
+  - name: MUT_SLC34A2
+    type: integer
+  - name: MUT_SLC45A3
+    type: integer
+  - name: MUT_SMAD2
+    type: integer
+  - name: MUT_SMAD3
+    type: integer
+  - name: MUT_SMAD4
+    type: integer
+  - name: MUT_SMARCA1
+    type: integer
+  - name: MUT_SMARCA4
+    type: integer
+  - name: MUT_SMARCB1
+    type: integer
+  - name: MUT_SMARCD1
+    type: integer
+  - name: MUT_SMARCE1
+    type: integer
+  - name: MUT_SMC1A
+    type: integer
+  - name: MUT_SMO
+    type: integer
+  - name: MUT_SOCS1
+    type: integer
+  - name: MUT_SOS1
+    type: integer
+  - name: MUT_SOX17
+    type: integer
+  - name: MUT_SOX21
+    type: integer
+  - name: MUT_SOX9
+    type: integer
+  - name: MUT_SP140
+    type: integer
+  - name: MUT_SPEN
+    type: integer
+  - name: MUT_SPOP
+    type: integer
+  - name: MUT_SRGAP3
+    type: integer
+  - name: MUT_STAG2
+    type: integer
+  - name: MUT_STAT3
+    type: integer
+  - name: MUT_STAT5B
+    type: integer
+  - name: MUT_STIL
+    type: integer
+  - name: MUT_STK11
+    type: integer
+  - name: MUT_STRN
+    type: integer
+  - name: MUT_SUFU
+    type: integer
+  - name: MUT_SUSD2
+    type: integer
+  - name: MUT_SUZ12
+    type: integer
+  - name: MUT_TAF15
+    type: integer
+  - name: MUT_TBL1XR1
+    type: integer
+  - name: MUT_TBX3
+    type: integer
+  - name: MUT_TCF3
+    type: integer
+  - name: MUT_TCF4
+    type: integer
+  - name: MUT_TCF7L2
+    type: integer
+  - name: MUT_TCIRG1
+    type: integer
+  - name: MUT_TEC
+    type: integer
+  - name: MUT_TENT5C
+    type: integer
+  - name: MUT_TERT
+    type: integer
+  - name: MUT_TET1
+    type: integer
+  - name: MUT_TET2
+    type: integer
+  - name: MUT_TFAP4
+    type: integer
+  - name: MUT_TFG
+    type: integer
+  - name: MUT_TGFBR2
+    type: integer
+  - name: MUT_TGIF1
+    type: integer
+  - name: MUT_TLL1
+    type: integer
+  - name: MUT_TMEM127
+    type: integer
+  - name: MUT_TNC
+    type: integer
+  - name: MUT_TNFAIP3
+    type: integer
+  - name: MUT_TNFRSF14
+    type: integer
+  - name: MUT_TOP1
+    type: integer
+  - name: MUT_TOP2A
+    type: integer
+  - name: MUT_TP53
+    type: integer
+  - name: MUT_TP63
+    type: integer
+  - name: MUT_TPM3
+    type: integer
+  - name: MUT_TRAF3
+    type: integer
+  - name: MUT_TRAF7
+    type: integer
+  - name: MUT_TRIM24
+    type: integer
+  - name: MUT_TRIM33
+    type: integer
+  - name: MUT_TRIM49C
+    type: integer
+  - name: MUT_TRIP11
+    type: integer
+  - name: MUT_TRRAP
+    type: integer
+  - name: MUT_TSC1
+    type: integer
+  - name: MUT_TSC2
+    type: integer
+  - name: MUT_U2AF2
+    type: integer
+  - name: MUT_UBE2A
+    type: integer
+  - name: MUT_UBE2D2
+    type: integer
+  - name: MUT_UBR5
+    type: integer
+  - name: MUT_USP44
+    type: integer
+  - name: MUT_USP6
+    type: integer
+  - name: MUT_USP8
+    type: integer
+  - name: MUT_USP9X
+    type: integer
+  - name: MUT_VHL
+    type: integer
+  - name: MUT_WAS
+    type: integer
+  - name: MUT_WDR45
+    type: integer
+  - name: MUT_WIF1
+    type: integer
+  - name: MUT_WNK2
+    type: integer
+  - name: MUT_WNK4
+    type: integer
+  - name: MUT_WRN
+    type: integer
+  - name: MUT_WT1
+    type: integer
+  - name: MUT_XPA
+    type: integer
+  - name: MUT_XPC
+    type: integer
+  - name: MUT_XPO1
+    type: integer
+  - name: MUT_YWHAE
+    type: integer
+  - name: MUT_ZBTB16
+    type: integer
+  - name: MUT_ZBTB20
+    type: integer
+  - name: MUT_ZBTB7B
+    type: integer
+  - name: MUT_ZCRB1
+    type: integer
+  - name: MUT_ZEB1
+    type: integer
+  - name: MUT_ZFHX3
+    type: integer
+  - name: MUT_ZFP36L1
+    type: integer
+  - name: MUT_ZFX
+    type: integer
+  - name: MUT_ZNF165
+    type: integer
+  - name: MUT_ZNF208
+    type: integer
+  - name: MUT_ZNF331
+    type: integer
+  - name: MUT_ZNF429
+    type: integer
+  - name: MUT_ZNF521
+    type: integer
+  - name: MUT_ZNF626
+    type: integer
+  - name: MUT_ZNF680
+    type: integer
+  - name: MUT_ZNF721
+    type: integer
+  - name: MUT_ZNF814
+    type: integer
+  - name: MUT_ZNF93
+    type: integer
+  - name: MUT_ZNRF3
+    type: integer
+  - name: MUT_ZRSR2
+    type: integer
+  - name: MUT_ZXDB
+    type: integer
 index_columns:
   - name: SANGER_MODEL_ID
     type: string

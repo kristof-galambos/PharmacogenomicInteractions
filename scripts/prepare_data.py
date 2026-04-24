@@ -6,6 +6,9 @@ from src.data_reader import prepare_expression, reduce_expression_features, \
     prepare_mutations, sanity_check, prepare_copy_number, reduce_copy_number_features, select_top_variance_columns
 
 
+FEATURE_TS = pd.Timestamp("2026-04-24T00:00:00Z")
+
+
 def get_prepared_gdsc_data(gdsc_path):
     print('reading gdsc (62 sec)')
     gdsc_data = pd.read_excel(gdsc_path)
@@ -90,15 +93,27 @@ def write_parquet_data(df, target_path):
     print('wrote to', target_path)
 
 
+def add_feature_timestamp(df, id_column="SANGER_MODEL_ID"):
+    if id_column not in df.columns:
+        raise ValueError(f"Expected {id_column!r} column before adding feature_ts.")
+
+    out = df.copy()
+    insert_at = out.columns.get_loc(id_column) + 1
+    out.insert(insert_at, "feature_ts", FEATURE_TS)
+    return out
+
+
 if __name__ == '__main__':
     gdsc = get_prepared_gdsc_data(gdsc_path='/Users/kristof/Downloads/GDSC2_fitted_dose_response_27Oct23.xlsx')
     write_parquet_data(gdsc, '../data/gdsc.parquet')
 
     mut = get_prepared_mutations_data(mutations_path='/Users/kristof/Downloads/mutations_summary_20260316.csv')
+    mut = add_feature_timestamp(mut)
     write_parquet_data(mut, '../data/mutations.parquet')
 
     EXPRESSION_TOP_N = None  # or 500
     expr = get_prepared_expression_data(expression_path='/Users/kristof/Downloads/rnaseq_merged_rsem_tpm_20260323.csv')
+    expr = add_feature_timestamp(expr)
     if EXPRESSION_TOP_N:
         expr = reduce_expression_features(expr, top_variance_top_n=EXPRESSION_TOP_N)
         write_parquet_data(expr, f'../data/gene_expressions_{EXPRESSION_TOP_N}.parquet')
@@ -109,6 +124,7 @@ if __name__ == '__main__':
 
     CNV_TOP_N = None  # or 500
     cnv = get_prepared_cnv_data(cnv_path='/Users/kristof/Downloads/WES_pureCN_CNV_genes_total_copy_number_20250207.csv')
+    cnv = add_feature_timestamp(cnv)
     if CNV_TOP_N:
         cnv = reduce_copy_number_features(cnv, top_variance_top_n=CNV_TOP_N)
         write_parquet_data(cnv, f'../data/copy_number_variations_{CNV_TOP_N}.parquet')
