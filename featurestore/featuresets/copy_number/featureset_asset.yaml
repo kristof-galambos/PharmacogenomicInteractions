@@ -1,0 +1,13 @@
+$schema: http://azureml/sdk-2-0/Featureset.json
+
+name: copy_number_features
+version: "1"
+description: Copy number variation features keyed by SANGER_MODEL_ID.
+specification:
+  path: ./spec
+entities:
+  - azureml:cell_line:1
+stage: Development
+tags:
+  modality: copy_number
+  project: pharmacogenomic_interactions

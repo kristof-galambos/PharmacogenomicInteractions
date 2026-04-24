@@ -1,0 +1,13 @@
+$schema: http://azureml/sdk-2-0/Featureset.json
+
+name: mutation_features
+version: "1"
+description: Mutation indicator features keyed by SANGER_MODEL_ID.
+specification:
+  path: ./spec
+entities:
+  - azureml:cell_line:1
+stage: Development
+tags:
+  modality: mutations
+  project: pharmacogenomic_interactions

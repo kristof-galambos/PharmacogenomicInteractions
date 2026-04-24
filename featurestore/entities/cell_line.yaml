@@ -1,0 +1,12 @@
+$schema: http://azureml/sdk-2-0/FeatureStoreEntity.json
+
+name: cell_line
+version: "1"
+description: Shared cell line entity keyed by SANGER_MODEL_ID.
+stage: Development
+index_columns:
+  - name: SANGER_MODEL_ID
+    type: string
+tags:
+  project: pharmacogenomic_interactions
+  entity_type: cell_line

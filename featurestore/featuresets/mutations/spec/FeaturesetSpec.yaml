@@ -1,0 +1,11 @@
+$schema: http://azureml/sdk-2-0/FeatureSetSpec.json
+
+source:
+  type: parquet
+  path: abfss://pgx-features@<storage-account-name>.dfs.core.windows.net/molecular/mutations/v1/mutations.parquet
+  timestamp_column:
+    name: feature_ts
+features: []
+index_columns:
+  - name: SANGER_MODEL_ID
+    type: string
